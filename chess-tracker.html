@@ -1446,12 +1446,7 @@ function populateOverview(profileId, p, h) {
         .map(t=>`${t[0].toUpperCase()+t.slice(1)}: <span>${cc.current[t].rating}</span>`)
         .concat(cc.current.puzzles ? [`Puzzles: <span>${cc.current.puzzles}</span>`] : [])
     ) : '',
-    ck && !ck.error ? miniCard('ChessKid','var(--chesskid)','#f0a50030',
-      ck.current?.puzzles || ck.current?.blitz?.rating || ck.current?.rapid?.rating,
-      (ck.current?.puzzles ? [`🧩 Puzzles: <span style="color:#fb923c">${ck.current.puzzles}</span>`] : [])
-        .concat([['blitz','Fast Chess'],['rapid','Slow Chess'],['daily','Daily']].filter(([t])=>ck.current?.[t]?.rating)
-          .map(([t,l])=>`${l}: <span>${ck.current[t].rating}</span>`))
-    ) : '',
+
     li && !li.error ? miniCard('Lichess','var(--lichess)','#b5886330',
       li.current?.rapid?.rating || li.current?.blitz?.rating || li.current?.classical?.rating,
       ['bullet','blitz','rapid','classical'].filter(t=>li.current?.[t]?.rating)
@@ -1873,9 +1868,6 @@ function paintTypeAll(cacheKey, types, tabSel, canvasId, profileId, n) {
 }
 function paintCCAll(profileId, n) { paintTypeAll('cc', CC_TYPES, '#tab-chesscom', 'chart-cc-all', profileId, n); }
 
-// ── CHESSKID TAB ─────────────────────────────────────────────────
-
-}
 function populateLi(profileId, p, li) {
   const el = document.getElementById('tab-lichess'); if (!el) return;
   if (!li || li.error) { el.innerHTML = errPanel('Lichess', p.lichess, li?.reason); return; }
