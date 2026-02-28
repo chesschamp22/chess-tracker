@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: chess-rating-tracker
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: 10000
