@@ -1352,10 +1352,7 @@ async function loadProfile(id, forceRefresh=false) {
   const ccKeys = cached?.cc?.types
     ? Math.max(0, ...Object.values(cached.cc.types).filter(Boolean).map(t => Object.keys(t.monthly||{}).length))
     : 0;
-  const ckKeys = cached?.ck?.types
-    ? Math.max(0, ...Object.values(cached.ck.types).filter(Boolean).map(t => Object.keys(t.monthly||{}).length))
-    : 0;
-  const tooShallow = (p.chesscom && ccKeys > 0 && ccKeys < 48) || (p.chesskid && ckKeys > 0 && ckKeys < 48);
+  const tooShallow = (p.chesscom && ccKeys > 0 && ccKeys < 48);
   const stale = !cached || (Date.now() - (cached.fetchedAt||0)) > CACHE_TTL;
 
   document.getElementById('mainContent').innerHTML = renderShell(p);
@@ -1368,7 +1365,6 @@ async function loadProfile(id, forceRefresh=false) {
   }
 
   const h = histCache[id];
-  }
   populateOverview(id, p, h);
   if (p.chesscom) populateCC(id, p, h.cc);
   if (p.lichess)  populateLi(id, p, h.li);
