@@ -31,6 +31,9 @@ except ImportError:
 PORT = int(os.environ.get("PORT", 8765))
 MUIR_BASE = "https://ratings-api.uschess.org/api/v1"
 HTML_FILE = Path(__file__).parent / "chess-tracker.html"
+if not HTML_FILE.exists():
+    # Try current working directory (Render deploys to /opt/render/project/src)
+    HTML_FILE = Path("chess-tracker.html")
 
 BROWSER_UA = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
