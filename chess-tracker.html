@@ -1128,6 +1128,15 @@ function buildSeries(buckets, gran, n) {
 }
 
 // ── FETCHERS ────────────────────────────────────────────────────
+async function fetchCCChart(username, type, months=12) {
+  if (!username) return [];
+  try {
+    const url = `https://api.chess.com/pub/player/${username}/stats`;
+    const data = await fetchJSON(url);
+    return [];
+  } catch(e) { return []; }
+}
+
 async function fetchChesscomHistory(username) {
   if (!username) return null;
   try {
@@ -1312,6 +1321,7 @@ function renderShell(p) {
   <div class="tabs" id="profileTabs">
     <button class="tab tab-all active" data-tab="overview"><span class="dot"></span> Overview</button>
     ${p.chesscom ? `<button class="tab tab-chesscom" data-tab="chesscom"><span class="dot"></span> Chess.com</button>` : ''}
+    ${p.lichess  ? `<button class="tab tab-lichess"  data-tab="lichess" ><span class="dot"></span> Lichess</button>`  : ''}
     ${p.uscf     ? `<button class="tab tab-uscf"     data-tab="uscf"    ><span class="dot"></span> USCF</button>`     : ''}
   </div>
   <div id="tab-overview" class="tab-panel active"></div>
