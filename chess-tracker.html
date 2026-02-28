@@ -1822,6 +1822,14 @@ function populateUSCF(profileId, p, uscf) {
 function paintUSCFAll(profileId, n) { paintTypeAll('uscf', USCF_TYPES, '#tab-uscf', 'chart-uscf-all', profileId, n); }
 
 // ── CC TAB ──────────────────────────────────────────────────────
+const LI_TYPES = [
+  { key:'bullet',     label:'Bullet',     color:'#f59e0b' },
+  { key:'blitz',      label:'Blitz',      color:'#81b64c' },
+  { key:'rapid',      label:'Rapid',      color:'#4db8ff' },
+  { key:'classical',  label:'Classical',  color:'#a78bfa' },
+  { key:'puzzles',    label:'Puzzles',    color:'#f472b6' },
+];
+
 const CC_TYPES = [
   { key:'bullet',  label:'Bullet',  color:'#f59e0b' },
   { key:'blitz',   label:'Blitz',   color:'#81b64c' },
