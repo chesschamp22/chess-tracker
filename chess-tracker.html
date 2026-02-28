@@ -907,8 +907,8 @@ async function fetchJSON(url) {
   // For Chess.com callback endpoints, go straight to proxy (avoids CORS/403)
   const isCallback = url.includes('chess.com/callback');
   const proxies = isCallback
-    ? [`https://corsproxy.io/?${encodeURIComponent(url)}`, `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`, url]
-    : [url, `https://corsproxy.io/?${encodeURIComponent(url)}`, `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`];
+    ? [`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`, `https://corsproxy.io/?${encodeURIComponent(url)}`, `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`, url]
+    : [url, `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`, `https://corsproxy.io/?${encodeURIComponent(url)}`, `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`];
   for (const u of proxies) {
     try { const d = await safeFetch(u); return typeof d==='string' ? JSON.parse(d) : d; } catch {}
   }
